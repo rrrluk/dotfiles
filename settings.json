@@ -1,0 +1,13 @@
+{
+    "editor.fontFamily": "'source code pro semibold', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 13,
+    "editor.wordWrap": "on",
+    "workbench.colorTheme": "Solarized Light",
+    "window.zoomLevel": 0,
+    "editor.formatOnSave": true,
+    "vim.handleKeys": {
+        "<C-b>": false
+    },
+    "liveServer.settings.donotShowInfoMsg": true,
+    "html.autoClosingTags": false,
+}
