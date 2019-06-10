@@ -9,7 +9,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
-Plug 'tmhedberg/SimpylFold'
+" Plug 'tmhedberg/SimpylFold' " Tegi suurte .py failide avamise rajult aeglaseks
 Plug 'marciomazza/vim-brogrammer-theme'
 " Plug 'itchyny/calendar.vim'
 " Plug 'vim-airline/vim-airline'
@@ -26,20 +26,22 @@ Plug 'StanAngeloff/php.vim'
 Plug 'dzeban/vim-log-syntax'
 Plug 'kien/ctrlp.vim'
 Plug 'maksimr/vim-jsbeautify'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug '~/.fzf'
+Plug 'junegunn/fzf.vim'
+"if has('nvim')
+  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+  "Plug 'Shougo/deoplete.nvim'
+  "Plug 'roxma/nvim-yarp'
+  "Plug 'roxma/vim-hug-neovim-rpc'
+"endif
 
 call plug#end()
 
 " deoplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 filetype off
 filetype indent on
@@ -89,6 +91,7 @@ set incsearch       " While typing a search command, show immediately where the
 set showmatch       " When a bracket is inserted, briefly jump to the matching
                     " one. The jump is only done if the match can be seen on
                     " the  screen. The time to show the match can be set with 'matchtime'.
+set cursorline      " underlines the line cursor is on
 
 
 let python_highlight_all=1
@@ -161,7 +164,8 @@ let mapleader = "\<Space>"
 set background=dark
 
 " NERD Tree
-map <F8> :NERDTreeToggle<CR>
+map <leader>b :NERDTreeToggle<CR>
+"map <F8> :NERDTreeToggle<CR>
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -181,6 +185,9 @@ set listchars=tab:»·,eol:¬,nbsp:+,space:·,extends:→,precedes:←
 noremap <F5> :set list!<CR>
 inoremap <F5> <C-o>:set list!<CR>
 cnoremap <F5> <C-c>:set list!<CR>
+
+" formatib
+nmap <F7> gg=G<C-o><C-o>
 
 " normaalne backspace
 set backspace=indent,eol,start
@@ -208,6 +215,11 @@ nnoremap <C-K> :bprev<CR>
 " buffer close, vaheta eelmine, sule viimane, vajalik NERDtree jaoks
 nnoremap <C-C> :bp\|bd #<CR>
 
+" buffer close
+nnoremap <leader>c :bd<CR>
+
+" save
+nnoremap <leader>w :w<CR>
 
 " kiirem save
 " noremap <Leader>w :update<CR>
@@ -218,7 +230,10 @@ nnoremap <C-C> :bp\|bd #<CR>
 " jk teeb escape
 " inoremap jk <ESC>
 
+" insert date
 :nnoremap <Leader>tt "=strftime("*%d/%m/%y*  ")<CR>P
+" to match with vscode insert date string plugin
+:nnoremap <C-S-I> "=strftime("_%d/%m/%y_  ")<CR>P
 " :inoremap <Leader>tt <C-R>=strftime("*%d/%m/%y*  ")<CR>
 
 
@@ -247,6 +262,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " vim-emmet
+" let g:user_emmet_leader_key=','
 " let g:user_emmet_install_global = 0
 " autocmd FileType html,css EmmetInstall
 " let g:user_emmet_expandabbr_key='<Tab>'
@@ -267,6 +283,20 @@ autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 " trailing whitespace
-highlight RedundantSpaces ctermbg=darkgrey guibg=red  
+highlight RedundantSpaces ctermbg=darkgrey guibg=red
 match RedundantSpaces /\s\+$/
+
+
+" Copy to clipboard
+vnoremap  <leader>y  "*y
+
+" Find files with fzf
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+  \   <bang>0)
+nmap <leader>p :Files!<CR>
+nnoremap <leader>f :Rg<Cr>
 
