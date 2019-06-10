@@ -44,18 +44,25 @@ URxvt.title: Urxvt
 URxvt*loginShell: true
 URxvt.buffered: true
 URxvt.intensityStyles: false  !!! kõige tähtsam !!!
+
+URxvt.dynamicColors: on
 ! Set the key to be interpreted as the Meta key to: alt, meta, hyper, super, mod1, mod2, mod3, mod4, mod5; option -mod.
 ! URxvt*modifier: alt
 
 !URxvt.lineSpace: -1
-/* URxvt.font: xft:0Roboto Mono Medium for Powerline:size=8 */
-/* URxvt.boldFont: xft:Roboto Mono Medium for Powerline:bold:size=8 */
+!URxvt.font: xft:Roboto Mono for Powerline:size=11
+!URxvt.boldFont: xft:Roboto Mono Medium for Powerline:size=11
+!
+!Retina ja Medium vist ei tee sittagi tegelt
+URxvt.font: xft:Fira Code Retina:size=11
+URxvt.boldFont: xft:Fira Code Medium:size=11
 
 
-xset +fp ~/.fonts/tamzen-font/bdf */
-xset fp rehash */
-URxvt.font: -*-tamzenforpowerline-medium-*-*-*-13-*-*-*-*-*-*-*
-URxvt.boldFont: -*-tamzenforpowerline-bold-*-*-*-13-*-*-*-*-*-*-*
+!xset +fp ~/.fonts/tamzen-font/bdf */
+!xset fp rehash */
+
+!URxvt.font: -*-tamzenforpowerline-medium-*-*-*-13-*-*-*-*-*-*-*
+!URxvt.boldFont: -*-tamzenforpowerline-bold-*-*-*-13-*-*-*-*-*-*-*
 
 
 
@@ -95,7 +102,7 @@ URxvt.perl-ext-common: default,font-size,keyboard-select
 ! medium contrast:
 *background: #282828
 ! soft contrast: 
-! *background: #32302f
+/* *background: #32302f */
 
 *foreground: #ebdbb2
 ! Black + DarkGrey
@@ -139,4 +146,5 @@ URxvt.keysym.M-s: perl:keyboard-select:search
 
 
 URxvt.keysym.C-1: command:\033]710;-*-tamzenforpowerline-medium-*-*-*-13-*-*-*-*-*-*-*\007\033]711;-*-tamzenforpowerline-bold-*-*-*-13-*-*-*-*-*-*-*\007
-URxvt.keysym.C-2: command:\033]710;xft:Source Code Pro for Powerline:size=9:antialias=true\007\033]711;xft:Source Code Pro for Powerline:size=9:antialias=true\007
+URxvt.keysym.C-2: command:\033]710;xft:Fira Code Retina:size=11:style=Regular:antialias=true\007\033]711;xft:Fira Code Medium:size=11:antialias=true\007
+/* URxvt.keysym.C-2: command:\033]710;xft:Source Code Pro for Powerline:size=10:antialias=true\007\033]711;xft:Source Code Pro for Powerline:size=10:antialias=true\007 */
