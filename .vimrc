@@ -18,9 +18,11 @@ Plug 'itchyny/lightline.vim'
 Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'blindFS/vim-taskwarrior'
 Plug 'pangloss/vim-javascript'
-Plug 'pearofducks/ansible-vim'
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'mrk21/yaml-vim'
+" Plug 'pearofducks/ansible-vim'
+" Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'lepture/vim-jinja'
+Plug 'nathanaelkane/vim-indent-guide'
 Plug 'StanAngeloff/php.vim'
 " Plug 'mattn/emmet-vim'
 Plug 'dzeban/vim-log-syntax'
@@ -28,6 +30,12 @@ Plug 'kien/ctrlp.vim'
 Plug 'maksimr/vim-jsbeautify'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'jiangmiao/auto-pairs'
+" lsp clangd
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'ajh17/vimcompletesme'
+Plug 'vim-scripts/loremipsum'
 "if has('nvim')
   "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "else
@@ -231,9 +239,8 @@ nnoremap <leader>w :w<CR>
 " inoremap jk <ESC>
 
 " insert date
-:nnoremap <Leader>tt "=strftime("*%d/%m/%y*  ")<CR>P
+:nnoremap <Leader>tt "=strftime("_%d/%m/%y_  ")<CR>P
 " to match with vscode insert date string plugin
-:nnoremap <C-S-I> "=strftime("_%d/%m/%y_  ")<CR>P
 " :inoremap <Leader>tt <C-R>=strftime("*%d/%m/%y*  ")<CR>
 
 
@@ -300,3 +307,24 @@ command! -bang -nargs=* Rg
 nmap <leader>p :Files!<CR>
 nnoremap <leader>f :Rg<Cr>
 
+" add yaml stuffs
+"au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+"autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+"
+
+" vim-lsp 
+" python
+" if executable('pyls')
+"     " pip install python-language-server
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'pyls',
+"         \ 'cmd': {server_info->['pyls']},
+"         \ 'whitelist': ['python'],
+"         \ })
+" endif
+
+" vimcompletesme
+autocmd FileType vim let b:vcm_tab_complete = 'vim'
+
+" miski ulme autocheck disable
+let g:nvim_typescript#diagnosticsEnable = 0
