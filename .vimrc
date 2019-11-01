@@ -58,6 +58,8 @@ filetype plugin on
 " The rest of your config follows here
 set t_Co=256
 
+
+command! Wq wq
 "set fillchars=""
 " set fillchars=stl:-,stlnc:-,vert:│
 set fillchars=vert:│
