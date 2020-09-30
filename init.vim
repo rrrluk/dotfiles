@@ -15,7 +15,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'dense-analysis/ale'
 Plug 'junegunn/vim-easy-align'
 " Plugin outside ~/.vim/plugged with post-update hook
@@ -93,9 +93,9 @@ nnoremap <silent> <f3> :NERDTreeToggle<CR>
 :nnoremap <Leader>tt "=strftime("_%d/%m/%y_  ")<CR>P
 
 " ripgrep
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
+" if executable('rg')
+"     let g:rg_derive_root='true'
+" endif
 
 " not needed because fzf?
 " nnoremap <leader>ps :Rg<SPACE>
@@ -107,8 +107,9 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
   \   <bang>0)
+
 nmap <leader>p :Files!<CR>
-nnoremap <leader>f :Rg<Cr>
+nnoremap <leader>f :Rg<CR>
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
