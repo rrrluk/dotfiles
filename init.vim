@@ -8,6 +8,7 @@ Plug 'vim-utils/vim-man'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-commentary'
+Plug 'mtdl9/vim-log-highlighting'
 Plug 'tpope/vim-sensible'
 Plug 'StanAngeloff/php.vim'
 Plug 'mbbill/undotree'
@@ -37,7 +38,8 @@ set shiftwidth=4
 set expandtab
 set smartindent
 " set nu
-set nowrap
+set wrap
+
 set smartcase
 set noswapfile
 set nobackup
@@ -61,10 +63,14 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <silent> <leader>+ :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
 
+" line numbers toggle
+nmap <F3> :set invnumber<CR>
 
 " undotree
-nnoremap <silent> <f5> :UndotreeToggle<CR>
 nnoremap <leader>u  :UndotreeToggle<CR>
+
+" wrap on off
+nnoremap <leader>w :set wrap!<CR>
 
 
 " buffer prev/next
@@ -87,10 +93,9 @@ let g:NERDTreeStatusline = ''
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Toggle
 nnoremap <silent> <C-b> :NERDTreeToggle<CR>
-nnoremap <silent> <f3> :NERDTreeToggle<CR>
 
 " insert date
-:nnoremap <Leader>tt "=strftime("_%d/%m/%y_  ")<CR>P
+nnoremap <Leader>tt "=strftime("_%d/%m/%y_  ")<CR>P
 
 " ripgrep
 " if executable('rg')
@@ -161,3 +166,9 @@ nmap <leader>gh :diffget //2<CR>
 " git status
 nmap <leader>gs :G<CR>
 
+" hidden chars
+" set showbreak=↪\
+set listchars=tab:»·,eol:¬,nbsp:+,space:·,extends:→,precedes:←
+noremap <F5> :set list!<CR>
+inoremap <F5> <C-o>:set list!<CR>
+cnoremap <F5> <C-c>:set list!<CR>
