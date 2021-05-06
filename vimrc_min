@@ -1,0 +1,56 @@
+syntax on
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set guicursor=
+set hidden
+set noerrorbells
+set noswapfile
+set nobackup
+set nowrap
+set incsearch
+set scrolloff=8
+set colorcolumn=80
+set signcolumn=yes
+
+" call plug#begin('~/.vim/plugged')
+
+" call plug#end()
+
+colorscheme pablo
+
+let mapleader = " "
+
+
+" Quickly edit/reload/source the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" paste toggle
+set pastetoggle=<F2>
+
+" line numbers toggle
+nmap <F3> :set invnumber<CR>
+
+
+" buffer
+nnoremap <C-J> :bnext<CR>
+nnoremap <C-K> :bprev<CR>
+
+" buffer close
+nnoremap <leader>c :bd<CR>
+
+" remove ctrl-a, ctrl-x
+map <C-a> <Nop>
+map <C-x> <Nop>
+
+" autocomplete
+"  Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+set completeopt=menuone,noinsert,noselect
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
+" yaml stuffs
+autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
