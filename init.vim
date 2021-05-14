@@ -10,6 +10,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-commentary'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-unimpaired'
 Plug 'StanAngeloff/php.vim'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
@@ -46,12 +47,16 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
+set hidden
 set colorcolumn=80
 colorscheme gruvbox
 set background=dark
 
 " space leader
 let mapleader = "\<Space>"
+
+" disable ctrl-a
+map <C-a> <Nop>
 
 " window movements
 nnoremap <leader>h :wincmd h<CR>
@@ -84,11 +89,14 @@ set pastetoggle=<F2>
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+vnoremap <leader>jq :%!jq .<CR>
 " nerdtree
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = []
 let g:NERDTreeStatusline = ''
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 " Automaticaly close nvim if NERDTree is only thing left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Toggle
@@ -114,7 +122,7 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 
 nmap <leader>p :Files!<CR>
-nnoremap <leader>f :Rg<CR>
+nmap <leader>f :Rg<CR>
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -172,3 +180,7 @@ set listchars=tab:»·,eol:¬,nbsp:+,space:·,extends:→,precedes:←
 noremap <F5> :set list!<CR>
 inoremap <F5> <C-o>:set list!<CR>
 cnoremap <F5> <C-c>:set list!<CR>
+
+" Jenkinsfile as groovy
+au BufNewFile,BufRead Jenkinsfile setf groovy
+
